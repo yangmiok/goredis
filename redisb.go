@@ -1,7 +1,7 @@
 package main
 import (
-	"fmt"
-	"github.com/garyburd/redigo/redis"
+"fmt"
+"github.com/garyburd/redigo/redis"
 )
 
 func main() {
@@ -19,7 +19,11 @@ func main() {
 	//res, err := c.Do("SETEX", "cache_user_id", "60", "10086")
 	//如果键 key 已经存在并且它的值是一个字符串， APPEND 命令将把 value 追加到键 key 现有值的末尾。
 	//res, err := c.Do("APPEND", "name", "-zhu")
-	res, err := c.Do("INCR", "total")
+	//为键 key 储存的数字值加上一。
+	//res, err := c.Do("INCR", "total")
+	//同时为多个键设置值。
+	//res, err := c.Do("MSET", "k1","good","k2","world","k3","nice")
+	res, err := c.Do("HSET", "website","age","22")
 	if err != nil {
 		panic(err)
 	}
