@@ -17,16 +17,18 @@ func main() {
 	//res, err := c.Do("set", "name", "taylor")
 	//将键 key 的值设置为 value ， 并将键 key 的生存时间设置为 seconds 秒钟
 	//res, err := c.Do("SETEX", "cache_user_id", "60", "10086")
-	//res, err := c.Do("GET", "name")
-	//if err != nil {
-	//	panic(err)
-	//}
-	//fmt.Print(res)
-	username, err := redis.String(c.Do("GET", "name"))
+	//如果键 key 已经存在并且它的值是一个字符串， APPEND 命令将把 value 追加到键 key 现有值的末尾。
+	//res, err := c.Do("APPEND", "name", "-zhu")
+	res, err := c.Do("INCR", "total")
 	if err != nil {
-		fmt.Println("redis get failed:", err)
-	} else {
-		fmt.Printf("Get name: %v \n", username)
+		panic(err)
 	}
+	fmt.Print(res)
+	//username, err := redis.String(c.Do("GET", "name"))
+	//if err != nil {
+	//	fmt.Println("redis get failed:", err)
+	//} else {
+	//	fmt.Printf("Get name: %v \n", username)
+	//}
 
 }
